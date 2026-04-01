@@ -1,0 +1,4 @@
+estudiantes/management/commands/importar_estudiantes.py — Comando de consola para carga con fotos:
+bashpython manage.py importar_estudiantes datos.csv
+python manage.py importar_estudiantes datos.xlsx --actualizar
+python manage.py importar_estudiantes datos.csv --carpeta-fotos /ruta/fotos

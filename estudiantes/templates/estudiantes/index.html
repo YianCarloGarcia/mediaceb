@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block Título %} Lista de Estudiantes EM {% endblock %}
+
+{% block contenido %}   
+
+<div class="card">
+    <div class="card-header">
+        <a name=""" id="" class="btn btn-success" href="{% url 'crear' %}" role="button">Agregar Estudiante</a>
+        
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Estudiantes</h4>
+        <div
+            class="table-responsive"
+        >
+            <table
+                class="table table-primary"
+            >
+                <thead>
+                   
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Jornada</th>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Curso</th>
+                        <th scope="col">Línea</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                    {% for Estudiante in estudiantes %}
+                    <tr>
+                        <td> {{ Estudiante.id }} </td>
+                        <td>{{ Estudiante.jornada }}</td>
+                        <td>{{ Estudiante.documento }}</td>
+                        <td>{{ Estudiante.apellidos }}</td>
+                        <td>{{ Estudiante.nombres }}</td>
+                        <td>{{ Estudiante.curso }}</td>
+                        <td>{{ Estudiante.linea }}</td>
+                        <td> <img src="{{ Estudiante.foto.url }}" height="100"> </td>
+                        <td> 
+                        <a  name=""
+                            id=""
+                            class="btn btn-info"
+                            href="{% url 'editar' Estudiante.id %}"
+                            role="button"
+                            >Editar</a>
+                         |
+                        <!-- 
+                          | 
+                        
+                        <a  name=""
+                            id=""
+                            class="btn btn-danger"
+                            href="{% url 'eliminar' Estudiante.id %}"
+                            role="button"
+                            >Borrar</a>
+
+                         | 
+                         -->
+                        <a  name=""
+                            id=""
+                            class="btn btn-success"
+                            href="{% url 'detalle' Estudiante.id %}"
+                            role="button"
+                            >Ver Datos</a>
+                        
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+            
+    </div>
+    <div class="card-footer text-muted">Desarrollado por YC</div>
+</div>
+
+
+{% endblock %}
+

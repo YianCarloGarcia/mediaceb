@@ -1,0 +1,129 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Iniciar Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous"/>
+    <style>
+        body {
+            background-color: #f0f4f8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+        .login-header {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            border-radius: 12px 12px 0 0;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+        .login-header h2 {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            font-size: 1.6rem;
+        }
+        .login-header p {
+            opacity: 0.85;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        .login-body {
+            padding: 2rem;
+            background: white;
+            border-radius: 0 0 12px 12px;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+        .btn-login {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            border: none;
+            padding: 0.65rem;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: opacity 0.2s;
+        }
+        .btn-login:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="login-header">
+            <h2>🏫 Sistema de Gestión</h2>
+            <p>Ingresa tus credenciales para continuar</p>
+        </div>
+        <div class="login-body">
+
+            {% if form.errors %}
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                     class="bi bi-exclamation-triangle-fill me-2 flex-shrink-0" viewBox="0 0 16 16">
+                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <div>Usuario o contraseña incorrectos. Intenta de nuevo.</div>
+            </div>
+            {% endif %}
+
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}"/>
+
+                <div class="mb-3">
+                    <label for="id_username" class="form-label">👤 Usuario</label>
+                    <input type="text"
+                           name="username"
+                           id="id_username"
+                           class="form-control form-control-lg"
+                           placeholder="Nombre de usuario"
+                           autofocus
+                           required/>
+                </div>
+
+                <div class="mb-4">
+                    <label for="id_password" class="form-label">🔒 Contraseña</label>
+                    <input type="password"
+                           name="password"
+                           id="id_password"
+                           class="form-control form-control-lg"
+                           placeholder="Contraseña"
+                           required/>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-login w-100">
+                    Ingresar al sistema
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+</body>
+</html>

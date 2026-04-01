@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block Título %} Inicio {% endblock %}
+
+{% block contenido %}   
+
+
+                {% if request.user.is_authenticated %}
+                   {{ user.username | upper }}, bienvenido
+                {% endif %}
+
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Bienvenidos</h1>
+        <p class="col-md-8 fs-4">
+            Ingrese Estudiantes al sistema de gestión académica.
+        </p>
+        <a href="{% url 'estudiantes' %}" class="btn btn-primary btn-lg" role="button">
+            Iniciar Ahora
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}

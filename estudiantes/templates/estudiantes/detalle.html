@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block Título %} Agregar Nuevo Estudiante {% endblock %}
+
+{% block contenido %}   
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <div class="card">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del Estudiante</h4>
+    
+        
+
+
+    <meta charset="UTF-8">
+    <title>Ficha del Estudiante</title>
+    <style>
+        .ficha {
+            width: 600px;
+            margin: auto;
+            border: 5px solid #ccc;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .foto {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .foto img {
+            width: 100px;
+            height: 150px;
+            object-fit: cover;
+            border: 1px solid #999;
+        }
+        .campo {
+            margin-bottom: 15px;
+        }
+        .campo strong {
+            width: 180px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ficha">
+    <h2 style="text-align:left;"></h2>
+
+    <div class="foto">
+        {% if estudiante.foto %}
+            <img src="{{ estudiante.foto.url }}" height="100">
+        {% else %}
+            <p><em>Sin foto</em></p>
+        {% endif %}
+    </div>
+
+    <div class="campo"><strong>Nombres:</strong> {{ estudiante.nombres }}</div>
+    <div class="campo"><strong>Apellidos:</strong> {{ estudiante.apellidos }}</div>
+    <div class="campo"><strong>Tipo de documento:</strong> {{ estudiante.get_tipo_display }}</div>
+    <div class="campo"><strong>Número de documento:</strong> {{ estudiante.documento }}</div>
+    <div class="campo"><strong>Curso:</strong> {{ estudiante.curso }}</div>
+    <div class="campo"><strong>Jornada:</strong> {{ estudiante.jornada }}</div>
+    <div class="campo"><strong>Línea de media:</strong> {{ estudiante.get_linea_display }}</div>
+    <div class="campo"><strong>Celular:</strong> {{ estudiante.celular }}</div>
+    <div class="campo"><strong>Email:</strong> {{ estudiante.email }}</div>
+    <div class="campo"><strong>Acudiente:</strong> {{ estudiante.acudiente }}</div>
+    <div class="campo"><strong>Parentesco Acudiente:</strong> {{ estudiante.parentesco }}</div>
+    <div class="campo"><strong>Teléfono Acudiente:</strong> {{ estudiante.tel_acudiente }}</div>
+    <div class="campo"><strong>Teléfono 2 Acudiente:</strong> {{ estudiante.tel2_acudiente }}</div>
+    <div class="campo"><strong>Dirección:</strong> {{ estudiante.direccion }}</div>
+    <div class="campo"><strong>Ocupación Acudiente:</strong> {{ estudiante.ocupacion_acudiente }}</div>
+    <div class="campo"><strong>EPS:</strong> {{ estudiante.eps }}</div>
+    <div class="campo"><strong>Observaciones:</strong> {{ estudiante.observaciones }}</div>
+
+    <br>
+    <a class="btn btn-info" href="{% url 'estudiantes' %}" role="button" >
+        Volver
+    </a>
+</div>
+
+        
+    </div>
+    <div class="card-footer text-muted">Footer</div>
+ </div>
+</body>
+</html>
+
+
+{% endblock %}
